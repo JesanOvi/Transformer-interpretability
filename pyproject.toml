@@ -9,4 +9,5 @@ dependencies = [
     "matplotlib>=3.10.8",
     "seaborn>=0.13.2",
     "transformer-lens>=2.17.0",
+    "tuned-lens>=0.2.0",
 ]
