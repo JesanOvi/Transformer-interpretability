@@ -9,8 +9,6 @@ This project contains code for experimenting with transformer interpretability.
 ---
 
 ##  Project Structure
-
-.
 ├── logit.py        # core logic  
 ├── tuned.py        # core logic  
 ├── main_notebook.ipynb  # run experiments  
@@ -69,7 +67,8 @@ pip install -r requirements.txt
 
 ##  Notes
 
-- This project uses uv for dependency management  
+- This project uses uv for dependency management 
+- If you don't use uv, use requirements.txt  
 
 
 ##  How to Use in `main_notebook.ipynb` (IMPORTANT)
@@ -83,3 +82,22 @@ from logit import LogitLens
 
 lens = LogitLens(model_name="EleutherAI/pythia-14m", top_k=5)
 lens.run("The sky is blue and the grass is ")
+
+## Key Findings
+
+- Early transformer layers already contain partial semantic signals
+- Logit Lens shows noisy predictions in early layers but improves in later layers
+- Tuned Lens produces more stable and accurate intermediate predictions
+- Model confidence generally increases with depth
+
+## Why This Is Useful
+
+- Helps understand how transformers build representations layer-by-layer
+- Provides insight into when models “decide” an answer
+- Useful for debugging and interpretability research
+
+## Limitations
+
+- Logit Lens assumes hidden states are directly decodable via unembedding
+- Tuned Lens requires training and may overfit
+- Both methods only capture linear structure, missing nonlinear information
